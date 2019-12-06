@@ -33,7 +33,6 @@ router.post('/:id/actions', validateProjectId, validateAction, (req, res) => {
 });
   
 router.get('/', checkRole("admin"), (req, res) => {
-    // const message = process.env.MSG || "hello world"
     Projects
     .get()
     .then(projects => {
@@ -125,17 +124,6 @@ router.delete('/:id', validateProjectId, (req, res) => {
   }
   
   function validateProject(req, res, next) {
-    // const {name} = req.body
-    
-  //   if (!req.body) {
-  //     easyErr(400, "missing project data", res)
-  //   } else if (!req.body.name){
-  //     easyErr(400, "missing required", res)
-  //   } else {
-  //     return next()
-  //   }
-  // }
-  
     if (!Object.entries(req.body).length) {
       easyErr(400, "cant find project data", res)
     } if (!req.body.name) {
@@ -148,10 +136,10 @@ router.delete('/:id', validateProjectId, (req, res) => {
   }
   
   function validateAction(req, res, next) {
-    if (!req.body) {
-      easyErr(400, "can't find action data", res)
+    if (!Object.entries(req.body).length) {
+      easyErr(400, "I can't even find a body bud, one more time please", res)
     }else if (!req.body.description) {
-      easyErr(400, "decribe your action please ", res)
+      easyErr(400, "hey buddy ima need a description here ", res)
     }else{
       req.body.project_id = req.project.id;
       next()
