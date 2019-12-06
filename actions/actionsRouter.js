@@ -11,7 +11,7 @@ const easyErr = (status, message, res) => {
 router.post('/', validateAction, (req, res) => {
 	const { project_id, description, notes } = req.body;
 	if (!project_id || !description || !notes) {
-		res.status(400).json({ error: 'Please provide project_id, description, and notes for the post.' });
+        easyErr(400, "please provide project_id, description and notes for this action post")
 	} else {
 		Actions
 			.insert({ project_id, description, notes })
@@ -21,10 +21,8 @@ router.post('/', validateAction, (req, res) => {
 				});
 			})
 			.catch((error) => {
-				console.log(error);
-				res.status(500).json({
-					errorMessage : 'There was an error while saving the post to the database',
-				});
+                console.log(error);
+                easyErr(500, "There was an error while saving the post to the database",res)
 			});
 	}
 });
@@ -81,13 +79,14 @@ router.delete('/:id', validateProjectId, (req, res) => {
 	.remove(req.params.id)
 	.then((count) => {
         if (count > 0) {
-            res.status(200).json({ message: 'It has been removed.' });
+            easyErr(200, "you removed the acion")
         } else {
-            res.status(400).json({ errorMessage: 'The post with this ID is not found.' });
+            easyErr(200, "the post with this id isn't in our database")
         }
     })
 	.catch((error) => {
         console.log(error);
+        easyErr(500, "couldn't remove that", res)
         res.status(500).json({
             errorMessage : 'Could not be removed.',
         });
