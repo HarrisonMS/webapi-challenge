@@ -93,8 +93,8 @@ The `/data/helpers` folder includes files you can use to manage the persistence 
 - `insert()`: calling insert passing it a resource object will add it to the database and return the newly created resource.
 - `update()`: accepts two arguments, the first is the `id` of the resource to update, and the second is an object with the `changes` to apply. It returns the updated resource. If a resource with the provided `id` is not found, the method returns `null`.
 - `remove()`: the remove method accepts an `id` as it's first parameter and, upon successfully deleting the resource from the database, returns the number of records deleted.
-
-The `projectModel.js` helper includes an extra method called `getProjectActions()` that takes a _project id_ as it's only argument and returns a list of all the _actions_ for the _project_.
+getProjectActions()
+The `projectModel.js` helper includes an extra method called `` that takes a _project id_ as it's only argument and returns a list of all the _actions_ for the _project_.
 
 We have provided test data for all the resources.
 
